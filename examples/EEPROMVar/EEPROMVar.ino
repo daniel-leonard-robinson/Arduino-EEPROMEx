@@ -17,7 +17,7 @@ const int memBase          = 120;
 
 void readAndWriteVar(EEPROMVar<float> &floatVar) { 
     Serial.println("----------------------------------------------");     
-    Serial.println("writing and retreiving EEPROMVar of type float");     
+    Serial.println("writing and retrieving EEPROMVar of type float");
     Serial.println("----------------------------------------------");  
 
     floatVar = 10.5;    // EEPROMVar supports = operator
@@ -29,7 +29,7 @@ void readAndWriteVar(EEPROMVar<float> &floatVar) {
     floatVar.save();     // store EEPROMVar to EEPROM
     
     floatVar = 0.0;      // reset 
-    floatVar.restore();  // restore EEPROMVar to EEPROM
+    floatVar.restore();  // restore EEPROMVar from EEPROM
     
     Serial.print("adress: ");
     Serial.println(floatVar.getAddress());

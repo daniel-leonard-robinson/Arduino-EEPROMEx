@@ -26,7 +26,8 @@
 #include <WProgram.h> 
 #endif
 #include <inttypes.h>
-#include <avr/eeprom.h>
+//#include <avr/eeprom.h>
+#include "../includes.h"
 
 #define EEPROMSize1k         1024
 #define EEPROMSize2k         2048

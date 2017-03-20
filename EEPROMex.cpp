@@ -78,7 +78,7 @@ void EEPROMClassEx::setMaxAllowedWrites(int allowedWrites) {
 }
 
 /**
- * Get a new starting address to write to. Adress is negative if not enough space is available
+ * Get a new starting address to write to. Address is negative if not enough space is available
  */
 int EEPROMClassEx::getAddress(int noOfBytes){
 	int availableaddress   = _nextAvailableaddress;
@@ -117,7 +117,8 @@ uint8_t EEPROMClassEx::read(int address)
 bool EEPROMClassEx::readBit(int address, byte bit) {
 	  if (bit> 7) return false; 
 	  if (!isReadOk(address+sizeof(uint8_t))) return false;
-	  byte byteVal =  eeprom_read_byte((unsigned char *) address);      
+//	  byte byteVal =  eeprom_read_byte((unsigned char *) address);
+	  byte byteVal =  eeprom_read_byte((unsigned int) address);
 	  byte bytePos = (1 << bit);
       return (byteVal & bytePos);
 }
@@ -128,7 +129,8 @@ bool EEPROMClassEx::readBit(int address, byte bit) {
 uint8_t EEPROMClassEx::readByte(int address)
 {	
 	if (!isReadOk(address+sizeof(uint8_t))) return 0;
-	return eeprom_read_byte((unsigned char *) address);
+//	return eeprom_read_byte((unsigned char *) address);
+	return eeprom_read_byte((unsigned int *) address);
 }
 
 /**
@@ -137,7 +139,8 @@ uint8_t EEPROMClassEx::readByte(int address)
 uint16_t EEPROMClassEx::readInt(int address)
 {
 	if (!isReadOk(address+sizeof(uint16_t))) return 0;
-	return eeprom_read_word((uint16_t *) address);
+	return eeprom_read_word((uint16_t  *) address);
+//	return eeprom_read_word((uint16_t) address);
 }
 
 /**
@@ -194,7 +197,8 @@ bool EEPROMClassEx::writeBit(int address, uint8_t bit, bool value) {
 bool EEPROMClassEx::writeByte(int address, uint8_t value)
 {
 	if (!isWriteOk(address+sizeof(uint8_t))) return false;
-	eeprom_write_byte((unsigned char *) address, value);
+//	eeprom_write_byte((unsigned char *) address, value);
+	eeprom_write_byte((unsigned int *) address, value);
 	return true;
 }
 
